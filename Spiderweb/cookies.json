@@ -1,0 +1,32 @@
+[
+  {
+    "domain": "localhost",
+    "expiry": 1800851120,
+    "httpOnly": false,
+    "name": "welcomebanner_status",
+    "path": "/",
+    "sameSite": "Lax",
+    "secure": false,
+    "value": "dismiss"
+  },
+  {
+    "domain": "localhost",
+    "expiry": 1800851126,
+    "httpOnly": false,
+    "name": "cookieconsent_status",
+    "path": "/",
+    "sameSite": "Lax",
+    "secure": false,
+    "value": "dismiss"
+  },
+  {
+    "domain": "localhost",
+    "expiry": 1800851118,
+    "httpOnly": false,
+    "name": "language",
+    "path": "/",
+    "sameSite": "Lax",
+    "secure": false,
+    "value": "en"
+  }
+]

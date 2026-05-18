@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spider-Web • Report</title>
+  <style>
+    :root{
+      --bg1:#0b1220;--bg2:#111a2e;
+      --card:rgba(255,255,255,.06);
+      --text:#e9eefc;--muted:rgba(233,238,252,.75);
+      --line:rgba(255,255,255,.12);
+      --accent:#7aa2ff;--accent2:#45e3c4;
+      --good:#45e3c4;--warn:#fbbf24;--bad:#fb7185;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:
+        radial-gradient(1000px 600px at 20% 10%, rgba(122,162,255,.25), transparent 55%),
+        radial-gradient(900px 500px at 80% 30%, rgba(69,227,196,.20), transparent 60%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      color:var(--text);
+      min-height:100vh;
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 40px;}
+    header{
+      display:flex;gap:14px;align-items:center;justify-content:space-between;
+      padding:14px 16px;border:1px solid var(--line);border-radius:16px;
+      background:rgba(0,0,0,.18);backdrop-filter:blur(8px);
+    }
+    .brand{display:flex;gap:12px;align-items:center;}
+    .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg, rgba(122,162,255,.95), rgba(69,227,196,.85));box-shadow:0 10px 25px rgba(0,0,0,.35);}
+    .brand h1{font-size:16px;margin:0;}
+    .brand p{margin:2px 0 0;font-size:12px;color:var(--muted);}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:10px 14px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(255,255,255,.06);color:var(--text);text-decoration:none;
+      cursor:pointer;transition:.15s transform,.15s background;user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.10);}
+    .btn.primary{border-color:rgba(122,162,255,.55);background:linear-gradient(135deg, rgba(122,162,255,.22), rgba(69,227,196,.16));}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    input{
+      flex:1;min-width:320px;background:rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.14);color:var(--text);
+      padding:10px 12px;border-radius:12px;outline:none;
+    }
+    .grid{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    @media (max-width:980px){.grid{grid-template-columns:1fr;}}
+    .card{
+      border:1px solid var(--line);background:var(--card);
+      border-radius:18px;padding:16px;box-shadow:0 18px 40px rgba(0,0,0,.28);
+    }
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px;}
+    @media (max-width:900px){.kpi{grid-template-columns:repeat(2,1fr);}}
+    @media (max-width:520px){.kpi{grid-template-columns:1fr;}}
+    .mini{border:1px solid var(--line);border-radius:14px;padding:12px;background:rgba(0,0,0,.12);}
+    .mini .label{font-size:12px;color:var(--muted)}
+    .mini .value{font-size:18px;margin-top:6px}
+    .muted{color:var(--muted)}
+    canvas{width:100%;height:320px;border-radius:14px;border:1px solid var(--line);background:rgba(0,0,0,.12);}
+    .table{margin-top:10px;border-top:1px solid var(--line);}
+    .item{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);}
+    .item .t{font-weight:700}
+    .item .m{font-size:12px;color:var(--muted);word-break:break-all}
+    .pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(0,0,0,.12);color:var(--muted);}
+    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:12px;}
+    code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Spider-Web</h1>
+          <p>Report dashboard</p>
+        </div>
+      </div>
+      <div class="row">
+        <a class="btn" href="/">Home</a>
+        <a class="btn primary" href="/index">Scan Page</a>
+      </div>
+    </header>
+
+    <section class="card" style="margin-top:16px;">
+      <div class="row" style="justify-content:space-between;align-items:flex-start;">
+        <div style="min-width:260px;flex:1">
+          <h2 style="margin:0 0 6px;">Results visualization</h2>
+          <p class="muted" style="margin:0 0 10px;line-height:1.5">
+            This page pulls the latest scan output from <code>/api/results</code> and builds charts (severity + finding types).
+            Pick the same target URL you scanned, then click <b>Load results</b>.
+          </p>
+        </div>
+        <span class="pill" id="statusPill">Status: <span id="statusText">idle</span></span>
+      </div>
+
+      <div class="row" style="margin-top:10px;">
+        <input id="target" placeholder="http://127.0.0.1:8080/WebGoat/" />
+        <button class="btn primary" type="button" id="btnLoad">Load results</button>
+        <a class="btn" id="btnPdf" href="/download/pdf" title="Download last generated PDF report (if any)">Download PDF</a>
+      </div>
+
+      <div class="kpi">
+        <div class="mini"><div class="label">Target</div><div class="value" id="kTarget" style="font-size:13px;line-height:1.35;">—</div></div>
+        <div class="mini"><div class="label">Endpoints</div><div class="value" id="kEndpoints">—</div></div>
+        <div class="mini"><div class="label">Findings</div><div class="value" id="kFindings">—</div></div>
+        <div class="mini"><div class="label">Top severity</div><div class="value" id="kTopSev">—</div></div>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h3 style="margin:0 0 8px;">Findings by severity (bar)</h3>
+        <p class="muted" style="margin:0 0 10px;">Counts grouped by <code>severity</code>.</p>
+        <canvas id="bar"></canvas>
+      </section>
+
+      <section class="card">
+        <h3 style="margin:0 0 8px;">Findings by type (pie)</h3>
+        <p class="muted" style="margin:0 0 10px;">Distribution grouped by <code>type</code> (top 8 + other).</p>
+        <canvas id="pie"></canvas>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:16px;">
+      <h3 style="margin:0 0 8px;">Top findings (latest)</h3>
+      <p class="muted" style="margin:0 0 10px;">Quick view (first 10). Use the scan page for full details.</p>
+      <div id="list" class="table"></div>
+    </section>
+
+    <footer>Spider-Web UI • Report</footer>
+  </div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+// Deterministic color palette (same label => same color)
+const PALETTE = [
+  ["rgba(122,162,255,.95)","rgba(69,227,196,.85)"],
+  ["rgba(251,113,133,.92)","rgba(251,191,36,.78)"],
+  ["rgba(96,165,250,.95)","rgba(167,139,250,.85)"],
+  ["rgba(52,211,153,.90)","rgba(34,211,238,.80)"],
+  ["rgba(244,114,182,.90)","rgba(251,191,36,.78)"],
+  ["rgba(250,204,21,.90)","rgba(34,211,238,.80)"],
+  ["rgba(148,163,184,.90)","rgba(96,165,250,.85)"],
+  ["rgba(163,230,53,.88)","rgba(16,185,129,.80)"],
+  ["rgba(248,113,113,.92)","rgba(59,130,246,.85)"],
+  ["rgba(192,132,252,.90)","rgba(34,211,238,.80)"],
+];
+
+function hashLabel(s){
+  s = String(s||"");
+  let h = 2166136261;
+  for(let i=0;i<s.length;i++){
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return Math.abs(h) >>> 0;
+}
+
+function colorsFor(label){
+  const i = hashLabel(label) % PALETTE.length;
+  return PALETTE[i];
+}
+
+
+function setStatus(text, running=false){
+  $("statusText").textContent = text;
+  const pill = $("statusPill");
+  pill.style.borderColor = running ? "rgba(69,227,196,.55)" : "rgba(255,255,255,.14)";
+}
+
+function cleanSev(s){
+  s = String(s || "Info").trim();
+  const map = { "critical":"Critical", "high":"High", "medium":"Medium", "low":"Low", "info":"Info" };
+  const k = s.toLowerCase();
+  return map[k] || (s[0].toUpperCase()+s.slice(1));
+}
+
+function orderSevKeys(){
+  return ["Critical","High","Medium","Low","Info"];
+}
+
+function countBy(items, keyFn){
+  const m = new Map();
+  for(const it of items){
+    const k = keyFn(it);
+    m.set(k, (m.get(k)||0) + 1);
+  }
+  return m;
+}
+
+function topKeyByCount(m){
+  let best = null, bestV = -1;
+  for(const [k,v] of m.entries()){
+    if(v > bestV){ bestV=v; best=k; }
+  }
+  return best || "—";
+}
+
+// --- Canvas helpers (no external libs) ---
+function hiDpi(canvas){
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = Math.max(1, Math.floor(rect.width * dpr));
+  canvas.height = Math.max(1, Math.floor(rect.height * dpr));
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  return ctx;
+}
+
+function clearCanvas(ctx, canvas){
+  const rect = canvas.getBoundingClientRect();
+  ctx.clearRect(0,0,rect.width,rect.height);
+}
+
+function drawBar(canvas, labels, values){
+  const ctx = hiDpi(canvas);
+  const w = canvas.getBoundingClientRect().width;
+  const h = canvas.getBoundingClientRect().height;
+  clearCanvas(ctx, canvas);
+
+  const pad = 22;
+  const chartW = w - pad*2;
+  const chartH = h - pad*2 - 18;
+
+  // background grid
+  ctx.globalAlpha = 1;
+  ctx.lineWidth = 1;
+  for(let i=0;i<=4;i++){
+    const y = pad + (chartH*(i/4));
+    ctx.strokeStyle = "rgba(255,255,255,.08)";
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(pad+chartW, y); ctx.stroke();
+  }
+
+  const maxV = Math.max(1, ...values);
+  const n = labels.length;
+  const gap = 10;
+  const barW = Math.max(14, (chartW - gap*(n-1)) / n);
+
+  for(let i=0;i<n;i++){
+    const v = values[i];
+    const bh = (v/maxV) * chartH;
+    const x = pad + i*(barW+gap);
+    const y = pad + chartH - bh;
+
+    // bar
+    const [c1,c2] = colorsFor(labels[i]);
+    const grd = ctx.createLinearGradient(x, y, x, y+bh);
+    grd.addColorStop(0, c1);
+    grd.addColorStop(1, c2);
+    ctx.fillStyle = grd;
+    roundRect(ctx, x, y, barW, bh, 10);
+    ctx.fill();
+
+    // value
+    ctx.fillStyle = "rgba(233,238,252,.9)";
+    ctx.font = "12px ui-sans-serif, system-ui";
+    ctx.textAlign = "center";
+    ctx.fillText(String(v), x + barW/2, y - 6);
+
+    // label
+    ctx.fillStyle = "rgba(233,238,252,.75)";
+    ctx.font = "12px ui-sans-serif, system-ui";
+    ctx.fillText(labels[i], x + barW/2, pad + chartH + 16);
+  }
+}
+
+function drawPie(canvas, labels, values){
+  const ctx = hiDpi(canvas);
+  const w = canvas.getBoundingClientRect().width;
+  const h = canvas.getBoundingClientRect().height;
+  clearCanvas(ctx, canvas);
+
+  const total = values.reduce((a,b)=>a+b,0) || 1;
+  const cx = w*0.33, cy = h*0.52;
+  const r = Math.min(w,h)*0.28;
+
+  let ang = -Math.PI/2;
+
+  // Distinct colors per label (deterministic)
+  function sliceFill(i){ return colorsFor(labels[i])[0].replace(/\,\.[0-9]+\)$/, ',.28)'); }
+  function sliceStroke(i){ return colorsFor(labels[i])[1].replace(/\,\.[0-9]+\)$/, ',.70)'); }
+
+
+
+  for(let i=0;i<labels.length;i++){
+    const frac = values[i] / total;
+    const end = ang + frac * Math.PI*2;
+
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,r,ang,end);
+    ctx.closePath();
+    ctx.fillStyle = sliceFill(i);
+    ctx.fill();
+    ctx.strokeStyle = sliceStroke(i);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ang = end;
+  }
+
+  // legend
+  const lx = w*0.62, ly = h*0.20;
+  ctx.font = "12px ui-sans-serif, system-ui";
+  ctx.textAlign = "left";
+  for(let i=0;i<labels.length;i++){
+    const y = ly + i*18;
+    ctx.fillStyle = sliceFill(i);
+    ctx.fillRect(lx, y-10, 12, 12);
+    ctx.strokeStyle = sliceStroke(i);
+    ctx.strokeRect(lx, y-10, 12, 12);
+
+    ctx.fillStyle = "rgba(233,238,252,.85)";
+    const pct = Math.round((values[i]/total)*100);
+    const text = `${labels[i]} — ${values[i]} (${pct}%)`;
+    ctx.fillText(text.length>28 ? text.slice(0,28)+"…" : text, lx+18, y);
+  }
+}
+
+function roundRect(ctx, x, y, w, h, r){
+  const rr = Math.min(r, w/2, h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+rr, y);
+  ctx.arcTo(x+w, y, x+w, y+h, rr);
+  ctx.arcTo(x+w, y+h, x, y+h, rr);
+  ctx.arcTo(x, y+h, x, y, rr);
+  ctx.arcTo(x, y, x+w, y, rr);
+  ctx.closePath();
+}
+
+function renderList(findings){
+  const list = $("list");
+  if(!findings.length){
+    list.innerHTML = '<div class="muted" style="padding:10px 0;">No findings yet.</div>';
+    return;
+  }
+  const top = findings.slice(0,10);
+  list.innerHTML = top.map(f => `
+    <div class="item">
+      <div style="min-width:0">
+        <div class="t">${escapeHtml(f.type || "Finding")}</div>
+        <div class="m">${escapeHtml(f.url || "")}</div>
+      </div>
+      <span class="pill">${escapeHtml(cleanSev(f.severity || "Info"))}</span>
+    </div>
+  `).join("");
+}
+
+function escapeHtml(s){
+  s = String(s ?? "");
+  return s.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function applyKpis(data){
+  const k = data.kpis || {};
+  const f = data.findings || [];
+
+  $("kTarget").textContent = data.target || "—";
+  $("kEndpoints").textContent = `${k.urls ?? 0} urls • ${k.forms ?? 0} forms • ${k.xhrs ?? 0} xhrs`;
+  $("kFindings").textContent = String(f.length);
+
+  const sevCounts = countBy(f, x => cleanSev(x.severity || "Info"));
+  $("kTopSev").textContent = topKeyByCount(sevCounts);
+
+  const tgt = $("target").value.trim();
+  $("btnPdf").href = '/download/pdf' + (tgt ? ('?target=' + encodeURIComponent(tgt)) : '');
+}
+
+function buildCharts(findings){
+  // severity bar (use fixed order)
+  const sevCounts = countBy(findings, x => cleanSev(x.severity || "Info"));
+  const sevKeys = orderSevKeys();
+  const sevVals = sevKeys.map(k => sevCounts.get(k) || 0);
+  drawBar($("bar"), sevKeys, sevVals);
+
+  // type pie (top 8 + other)
+  const typeCounts = Array.from(countBy(findings, x => String(x.type || "Unknown")).entries())
+    .sort((a,b)=>b[1]-a[1]);
+  const top = typeCounts.slice(0,8);
+  const rest = typeCounts.slice(8).reduce((a,kv)=>a+kv[1],0);
+  if(rest>0) top.push(["Other", rest]);
+
+  const labels = top.map(x=>x[0]);
+  const vals = top.map(x=>x[1]);
+  drawPie($("pie"), labels, vals);
+}
+
+async function loadResults(){
+  const target = $("target").value.trim();
+  if(!target){
+    alert("Enter the same target URL you scanned.");
+    return;
+  }
+  setStatus("loading…", true);
+
+  // optional status update
+  try{
+    const s = await fetch("/api/status", {cache:"no-store"}).then(r=>r.json());
+    if(s && s.stage){
+      setStatus(s.stage, !!s.running);
+    }
+  }catch(e){}
+
+  const r = await fetch("/api/results?target=" + encodeURIComponent(target), {cache:"no-store"})
+    .then(r=>r.json()).catch(()=>null);
+
+  if(!r || !r.ok){
+    setStatus("no results", false);
+    $("kTarget").textContent = "—";
+    $("kEndpoints").textContent = "—";
+    $("kFindings").textContent = "—";
+    $("kTopSev").textContent = "—";
+    renderList([]);
+    buildCharts([]);
+    return;
+  }
+
+  setStatus("ready", false);
+  applyKpis(r);
+  buildCharts(r.findings || []);
+  renderList(r.findings || []);
+}
+
+// redraw on resize for crisp charts
+let RESIZE_T = null;
+window.addEventListener("resize", () => {
+  if(RESIZE_T) clearTimeout(RESIZE_T);
+  RESIZE_T = setTimeout(() => {
+    // rebuild from last data if available
+    loadResults();
+  }, 250);
+});
+
+$("btnLoad").addEventListener("click", loadResults);
+</script>
+</body>
+</html>

@@ -1,0 +1,1432 @@
+{
+  "target": "http://localhost:3000/",
+  "generated_at": "2026-01-25 12:30:31",
+  "timings": {
+    "crawl_seconds": 135.77,
+    "scan_seconds": 180.86,
+    "total_seconds": 316.64
+  },
+  "manual_login": true,
+  "max_urls": 150,
+  "counts": {
+    "urls": 10,
+    "forms": 0,
+    "xhrs": 24
+  },
+  "findings": [
+    {
+      "type": "SQL Injection (Auth bypass)",
+      "severity": "High",
+      "owasp": "A03:2021-Injection",
+      "url": "http://localhost:3000/rest/user/login",
+      "param": "email",
+      "payload": "' OR 1=1--",
+      "evidence": {
+        "status": 200,
+        "token_present": true,
+        "user_hint": null,
+        "role_hint": null,
+        "note": "Login endpoint returned an auth token for an invalid baseline account."
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/about",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/about",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/about",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/contact",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/contact",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/contact",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/forgot-password",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/forgot-password",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/forgot-password",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/login",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/login",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/login",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/photo-wall",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/photo-wall",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/photo-wall",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/register",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/register",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/register",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/ftp/legal.md",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/ftp/legal.md",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/ftp/legal.md",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/markdown; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 3047
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 449
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "Medium",
+      "confidence": "Medium",
+      "url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 1.0,
+        "anon_len": 449,
+        "auth_len": 449,
+        "anon_snippet": "{\"status\":\"success\",\"data\":[{\"id\":74,\"key\":\"scoreBoardChallenge\",\"name\":\"Score Board\",\"category\":\"Miscellaneous\",\"tags\":\"Tutorial,Code Analysis,With Coding Challenge\",\"description\":\"Find the carefully hidden 'Score Board' page.\",\"difficulty\":1,\"mitigationUrl\":"
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 449
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/api/Challenges/?name=Score%20Board",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 449
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/api/Feedbacks/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/api/Feedbacks/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/api/Feedbacks/",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 1734
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "Medium",
+      "confidence": "Medium",
+      "url": "http://localhost:3000/api/Feedbacks/",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 1.0,
+        "anon_len": 1734,
+        "auth_len": 1734,
+        "anon_snippet": "{\"status\":\"success\",\"data\":[{\"UserId\":1,\"id\":1,\"comment\":\"I love this shop! Best products in town! Highly recommended! (***in@juice-sh.op)\",\"rating\":5,\"createdAt\":\"2026-01-25T04:21:29.578Z\",\"updatedAt\":\"2026-01-25T04:21:29.578Z\"},{\"UserId\":2,\"id\":2,\"comment\":\""
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/api/Feedbacks/",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/api/Feedbacks/",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 1734
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/api/Feedbacks/",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/api/Feedbacks/",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 1734
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/api/Quantitys/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/api/Quantitys/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/api/Quantitys/",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 6258
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/api/SecurityQuestions/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/api/SecurityQuestions/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/api/SecurityQuestions/",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 1934
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/assets/i18n/en.json",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/assets/i18n/en.json",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/assets/i18n/en.json",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 32438
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "Medium",
+      "confidence": "Medium",
+      "url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 1.0,
+        "anon_len": 75002,
+        "auth_len": 75002,
+        "anon_snippet": "<!--   ~ Copyright (c) 2014-2025 Bjoern Kimminich & the OWASP Juice Shop contributors.   ~ SPDX-License-Identifier: MIT   -->  <!doctype html> <html lang=\"en\" data-beasties-container> <head>   <meta charset=\"utf-8\">   <title>OWASP Juice Shop</title>   <meta na"
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+            "history": [],
+            "headers": {
+              "Content-Type": "text/html; charset=UTF-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 75002
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/assets/public/images/uploads/%E1%93%9A%E1%98%8F%E1%97%A2-",
+            "history": [],
+            "headers": {
+              "Content-Type": "text/html; charset=UTF-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 75002
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/admin/application-configuration",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/admin/application-configuration",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/admin/application-configuration",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 21666
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/admin/application-configuration",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 1.0,
+        "anon_len": 21666,
+        "auth_len": 21666,
+        "anon_snippet": "{\"config\":{\"server\":{\"port\":3000,\"basePath\":\"\",\"baseUrl\":\"http://localhost:3000\"},\"application\":{\"domain\":\"juice-sh.op\",\"name\":\"OWASP Juice Shop\",\"logo\":\"JuiceShop_Logo.png\",\"favicon\":\"favicon_js.ico\",\"theme\":\"bluegrey-lightgreen\",\"showVersionNumber\":true,\"sho"
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/admin/application-configuration",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/admin/application-configuration",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 21666
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/admin/application-configuration",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/admin/application-configuration",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 21666
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/admin/application-version",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/admin/application-version",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/admin/application-version",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 20
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "High",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/admin/application-version",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 1.0,
+        "anon_len": 20,
+        "auth_len": 20,
+        "anon_snippet": "{\"version\":\"19.0.0\"}"
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/admin/application-version",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/admin/application-version",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 20
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/admin/application-version",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/admin/application-version",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 20
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/captcha/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/captcha/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/captcha/",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 47
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "Medium",
+      "confidence": "Info",
+      "url": "http://localhost:3000/rest/captcha/",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 0.845,
+        "anon_len": 48,
+        "auth_len": 49,
+        "anon_snippet": "{\"captchaId\":4,\"captcha\":\"4+10+4\",\"answer\":\"18\"}"
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/captcha/",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/captcha/",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 49
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/captcha/",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/captcha/",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 48
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/languages",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/languages",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/languages",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 4694
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/memories/",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/memories/",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/memories/",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 6134
+        }
+      }
+    },
+    {
+      "type": "Broken Access Control (Anonymous Access)",
+      "severity": "Medium",
+      "confidence": "Medium",
+      "url": "http://localhost:3000/rest/memories/",
+      "detail": "Anonymous session received HTTP 200 on a sensitive-looking endpoint. Confirm whether this endpoint should require authentication/authorization.",
+      "evidence": {
+        "anon_status": 200,
+        "auth_status": 200,
+        "similarity": 1.0,
+        "anon_len": 6134,
+        "auth_len": 6134,
+        "anon_snippet": "{\"status\":\"success\",\"data\":[{\"UserId\":13,\"id\":1,\"caption\":\"\ud83d\ude3c #zatschi #whoneedsfourlegs\",\"imagePath\":\"assets/public/images/uploads/\u14da\u160f\u15e2-#zatschi-#whoneedsfourlegs-1572600969477.jpg\",\"createdAt\":\"2026-01-25T04:21:34.981Z\",\"updatedAt\":\"2026-01-25T04:21:34.981Z\",\""
+      },
+      "proof": {
+        "auth": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/memories/",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/memories/",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 6134
+          }
+        },
+        "anon": {
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:3000/rest/memories/",
+            "headers": {
+              "User-Agent": "LabScanner/1.0",
+              "Accept-Encoding": "gzip, deflate",
+              "Accept": "*/*",
+              "Connection": "keep-alive"
+            }
+          },
+          "response": {
+            "status": 200,
+            "final_url": "http://localhost:3000/rest/memories/",
+            "history": [],
+            "headers": {
+              "Content-Type": "application/json; charset=utf-8",
+              "X-Frame-Options": "SAMEORIGIN",
+              "X-Content-Type-Options": "nosniff",
+              "Access-Control-Allow-Origin": "*"
+            },
+            "len": 6134
+          }
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/products/search?q=",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/products/search?q=",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/products/search?q=",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 13639
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/rest/user/whoami",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/rest/user/whoami",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/rest/user/whoami",
+          "history": [],
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 11
+        }
+      }
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/search",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/search",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/search",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "XSS (Executed - SPA Fragment)",
+      "severity": "High",
+      "confidence": "High",
+      "url": "http://localhost:3000/#/search?q=%22%3E%3Cimg+src%3Dx+onerror%3D%22document.documentElement.setAttribute%28%27data-xss%27%2C%27XSS1769315419483%27%29%22%3E",
+      "param": "q",
+      "payload": "\"><img src=x onerror=\"document.documentElement.setAttribute('data-xss','XSS1769315419483')\">",
+      "evidence": {
+        "marker": "XSS1769315419483",
+        "why": "Payload executed in SPA route and set data-xss marker."
+      },
+      "recommendation": "Sanitize client-side rendering; avoid inserting raw HTML; use trusted templating; apply CSP and DOM sanitizers."
+    },
+    {
+      "type": "Security Misconfiguration (Headers/Cookies)",
+      "severity": "Low",
+      "confidence": "Confirmed",
+      "url": "http://localhost:3000/#/search?q=test",
+      "detail": "Missing recommended security headers and/or cookie attributes were observed in the response.",
+      "evidence": {
+        "missing_headers": [
+          "Content-Security-Policy",
+          "Referrer-Policy"
+        ],
+        "cookie_issues": []
+      },
+      "proof": {
+        "request": {
+          "method": "GET",
+          "url": "http://localhost:3000/#/search?q=test",
+          "headers": {
+            "User-Agent": "LabScanner/1.0",
+            "Accept-Encoding": "gzip, deflate",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+          }
+        },
+        "response": {
+          "status": 200,
+          "final_url": "http://localhost:3000/#/search?q=test",
+          "history": [],
+          "headers": {
+            "Content-Type": "text/html; charset=UTF-8",
+            "X-Frame-Options": "SAMEORIGIN",
+            "X-Content-Type-Options": "nosniff",
+            "Access-Control-Allow-Origin": "*"
+          },
+          "len": 75002
+        }
+      }
+    },
+    {
+      "type": "XSS (Executed - SPA Fragment)",
+      "severity": "High",
+      "confidence": "High",
+      "url": "http://localhost:3000/#/search?q=%22%3E%3Cimg+src%3Dx+onerror%3D%22document.documentElement.setAttribute%28%27data-xss%27%2C%27XSS1769315425309%27%29%22%3E",
+      "param": "q",
+      "payload": "\"><img src=x onerror=\"document.documentElement.setAttribute('data-xss','XSS1769315425309')\">",
+      "evidence": {
+        "marker": "XSS1769315425309",
+        "why": "Payload executed in SPA route and set data-xss marker."
+      },
+      "recommendation": "Sanitize client-side rendering; avoid inserting raw HTML; use trusted templating; apply CSP and DOM sanitizers."
+    }
+  ],
+  "notes": {
+    "confidence_levels": {
+      "Confirmed": "Strong external evidence (direct header/body proof or strong differential signal).",
+      "Medium": "Suspicious and supported by signals, but may still require validation."
+    }
+  }
+}
